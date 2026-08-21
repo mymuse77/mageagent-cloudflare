@@ -9,17 +9,17 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
   const t = translations[locale];
 
   return (
-    <section id="airgap" style={{ padding: "40px 0 60px" }}>
+    <section id="airgap" style={{ padding: "clamp(30px, 6vw, 48px) 0 clamp(40px, 6vw, 60px)" }}>
       <div className="container">
         <div
           style={{
             background: "#1f1d1a",
             color: "#f8f6f0",
             borderRadius: "18px",
-            padding: "48px 40px",
+            padding: "clamp(28px, 5vw, 48px) clamp(20px, 4vw, 40px)",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "40px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+            gap: "clamp(24px, 4vw, 40px)",
             alignItems: "center",
             boxShadow: "0 12px 36px rgba(31, 29, 26, 0.2)",
           }}
@@ -28,10 +28,10 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
             <div
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "0.76rem",
+                fontSize: "0.74rem",
                 color: "var(--terracotta)",
                 letterSpacing: "0.08em",
-                marginBottom: "12px",
+                marginBottom: "10px",
               }}
             >
               // AIR-GAPPED CRITICAL SYSTEM GUARANTEE
@@ -39,10 +39,10 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
             <h2
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "clamp(1.8rem, 3.2vw, 2.4rem)",
+                fontSize: "clamp(1.6rem, 3.8vw, 2.4rem)",
                 fontWeight: 400,
                 lineHeight: 1.25,
-                marginBottom: "16px",
+                marginBottom: "14px",
                 color: "#ffffff",
               }}
             >
@@ -51,7 +51,7 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
             <p
               style={{
                 color: "#a8a29e",
-                fontSize: "0.95rem",
+                fontSize: "clamp(0.88rem, 2.2vw, 0.95rem)",
                 lineHeight: 1.65,
               }}
             >
@@ -64,7 +64,7 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
               background: "rgba(255, 255, 255, 0.04)",
               border: "1px solid rgba(255, 255, 255, 0.1)",
               borderRadius: "12px",
-              padding: "24px",
+              padding: "clamp(18px, 3vw, 24px)",
             }}
           >
             <ul
@@ -72,7 +72,7 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
                 listStyle: "none",
                 display: "flex",
                 flexDirection: "column",
-                gap: "14px",
+                gap: "12px",
                 margin: 0,
                 padding: 0,
               }}
@@ -83,8 +83,8 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
                   style={{
                     display: "flex",
                     alignItems: "flex-start",
-                    gap: "12px",
-                    fontSize: "0.92rem",
+                    gap: "10px",
+                    fontSize: "clamp(0.85rem, 2vw, 0.92rem)",
                     color: "#e7e5e4",
                     lineHeight: 1.5,
                   }}
@@ -93,8 +93,8 @@ export const AirgapHighlight: React.FC<AirgapHighlightProps> = ({ locale }) => {
                     style={{
                       color: "var(--terracotta)",
                       fontWeight: "bold",
-                      fontSize: "1.1rem",
-                      lineHeight: 1,
+                      fontSize: "1rem",
+                      lineHeight: 1.2,
                     }}
                   >
                     ✓

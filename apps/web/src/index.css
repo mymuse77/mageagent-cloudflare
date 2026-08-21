@@ -24,6 +24,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg);
   color: var(--text);
@@ -33,12 +37,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-image: radial-gradient(circle at 10% 20%, rgba(196, 77, 45, 0.03), transparent 25%);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
 }
 
 /* Typography Helpers */
@@ -62,6 +73,7 @@ body {
   cursor: pointer;
   border: 1px solid transparent;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .btn-craft:hover {
@@ -85,6 +97,7 @@ body {
   cursor: pointer;
   border: 1px solid var(--border);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .btn-craft-outline:hover {
@@ -106,6 +119,7 @@ body {
   padding: 4px 10px;
   border-radius: 999px;
   letter-spacing: 0.02em;
+  max-width: 100%;
 }
 
 .tech-tag {
@@ -119,12 +133,49 @@ body {
   border-radius: 4px;
 }
 
+/* Mobile Nav Styles */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  .desktop-nav {
+    display: none;
+  }
+  .mobile-nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .animate-fade {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

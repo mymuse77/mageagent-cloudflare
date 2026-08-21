@@ -13,7 +13,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
       style={{
         borderTop: "1px solid var(--border)",
         background: "var(--surface)",
-        padding: "48px 0 36px",
+        padding: "clamp(36px, 6vw, 48px) 0 clamp(28px, 4vw, 36px)",
       }}
     >
       <div className="container">
@@ -23,8 +23,8 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             flexWrap: "wrap",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "24px",
-            marginBottom: "32px",
+            gap: "20px",
+            marginBottom: "28px",
           }}
         >
           <div>
@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
             >
               MadeAgent <span style={{ color: "var(--terracotta)", fontStyle: "italic" }}>Studio</span>
             </div>
-            <div style={{ color: "var(--text-muted)", fontSize: "0.85rem" }}>
+            <div style={{ color: "var(--text-muted)", fontSize: "0.82rem" }}>
               {t.brand_sub} · madeagent.cc
             </div>
           </div>
@@ -47,10 +47,11 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
           <div
             style={{
               display: "flex",
+              flexWrap: "wrap",
               alignItems: "center",
-              gap: "24px",
+              gap: "14px",
               fontFamily: "var(--font-mono)",
-              fontSize: "0.85rem",
+              fontSize: "0.82rem",
             }}
           >
             <a
@@ -71,14 +72,14 @@ export const Footer: React.FC<FooterProps> = ({ locale }) => {
         <div
           style={{
             borderTop: "1px solid var(--border-light)",
-            paddingTop: "24px",
+            paddingTop: "20px",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
             alignItems: "center",
-            fontSize: "0.8rem",
+            fontSize: "0.78rem",
             color: "var(--text-dim)",
-            gap: "12px",
+            gap: "10px",
           }}
         >
           <div>{t.footer_text}</div>

@@ -11,13 +11,13 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
   return (
     <section
       style={{
-        padding: "84px 0 64px",
+        padding: "clamp(48px, 8vw, 84px) 0 clamp(36px, 6vw, 64px)",
         borderBottom: "1px solid var(--border)",
       }}
     >
       <div className="container">
-        <div style={{ marginBottom: "20px" }}>
-          <span className="craft-badge">
+        <div style={{ marginBottom: "18px" }}>
+          <span className="craft-badge" style={{ fontSize: "clamp(0.7rem, 2.2vw, 0.76rem)" }}>
             <span
               style={{
                 width: "6px",
@@ -25,6 +25,7 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
                 borderRadius: "50%",
                 background: "var(--terracotta)",
                 display: "inline-block",
+                flexShrink: 0,
               }}
             />
             {t.status_pill}
@@ -34,11 +35,11 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
         <h1
           style={{
             fontFamily: "var(--font-serif)",
-            fontSize: "clamp(2.4rem, 4.8vw, 3.8rem)",
+            fontSize: "clamp(1.95rem, 5.2vw, 3.8rem)",
             fontWeight: 500,
-            lineHeight: 1.18,
+            lineHeight: 1.2,
             letterSpacing: "-0.02em",
-            marginBottom: "24px",
+            marginBottom: "20px",
             maxWidth: "920px",
             color: "var(--text)",
           }}
@@ -49,6 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
               fontStyle: "italic",
               color: "var(--terracotta)",
               fontWeight: 500,
+              display: "inline",
             }}
           >
             {t.hero_title_highlight}
@@ -57,11 +59,11 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
 
         <p
           style={{
-            fontSize: "1.12rem",
+            fontSize: "clamp(0.98rem, 2.5vw, 1.12rem)",
             color: "var(--text-muted)",
             maxWidth: "740px",
             lineHeight: 1.65,
-            marginBottom: "36px",
+            marginBottom: "32px",
           }}
         >
           {t.hero_desc}
@@ -72,20 +74,20 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
-            gap: "16px",
+            gap: "14px",
           }}
         >
           <a
             href="#contact"
             className="btn-craft"
-            style={{ padding: "12px 28px", fontSize: "0.95rem" }}
+            style={{ padding: "12px 26px", fontSize: "0.92rem" }}
           >
             {t.hero_cta_primary}
           </a>
           <a
             href="#services"
             className="btn-craft-outline"
-            style={{ padding: "12px 24px", fontSize: "0.95rem" }}
+            style={{ padding: "12px 22px", fontSize: "0.92rem" }}
           >
             {t.hero_cta_secondary}
           </a>
@@ -95,22 +97,26 @@ export const Hero: React.FC<HeroProps> = ({ locale }) => {
               display: "inline-flex",
               alignItems: "center",
               gap: "8px",
-              padding: "10px 18px",
+              padding: "9px 16px",
               background: "var(--surface)",
               border: "1px solid var(--border)",
               borderRadius: "999px",
               fontFamily: "var(--font-mono)",
-              fontSize: "0.85rem",
+              fontSize: "0.82rem",
               color: "var(--text)",
+              maxWidth: "100%",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
-            <span style={{ color: "var(--text-dim)" }}>{t.hero_email_hint}</span>
+            <span style={{ color: "var(--text-dim)", whiteSpace: "nowrap" }}>{t.hero_email_hint}</span>
             <a
               href="mailto:mymuse@foxmail.com"
               style={{
                 color: "var(--terracotta)",
                 fontWeight: 600,
                 textDecoration: "none",
+                whiteSpace: "nowrap",
               }}
             >
               mymuse@foxmail.com

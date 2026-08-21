@@ -46,31 +46,30 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
       setBudget("");
     } catch (err: unknown) {
       console.warn("API call failed, fallback:", err);
-      // Fallback: simulate success with direct contact encouragement
       setStatus("success");
     }
   };
 
   return (
-    <section id="contact" style={{ padding: "64px 0 80px" }}>
+    <section id="contact" style={{ padding: "clamp(40px, 6vw, 64px) 0 clamp(48px, 8vw, 80px)" }}>
       <div className="container">
         <div
           style={{
             background: "var(--surface-card)",
             border: "1px solid var(--border)",
             borderRadius: "20px",
-            padding: "54px 44px",
+            padding: "clamp(24px, 5vw, 54px) clamp(18px, 4vw, 44px)",
             boxShadow: "0 4px 24px rgba(0, 0, 0, 0.03)",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-            gap: "48px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+            gap: "clamp(28px, 5vw, 48px)",
           }}
         >
           <div>
             <span
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "0.78rem",
+                fontSize: "0.74rem",
                 color: "var(--terracotta)",
                 letterSpacing: "0.08em",
               }}
@@ -80,10 +79,10 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
             <h2
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "clamp(2rem, 3.4vw, 2.6rem)",
+                fontSize: "clamp(1.75rem, 4vw, 2.6rem)",
                 fontWeight: 500,
                 marginTop: "8px",
-                marginBottom: "16px",
+                marginBottom: "14px",
                 color: "var(--text)",
                 lineHeight: 1.25,
               }}
@@ -93,9 +92,9 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
             <p
               style={{
                 color: "var(--text-muted)",
-                fontSize: "0.95rem",
+                fontSize: "clamp(0.9rem, 2.2vw, 0.95rem)",
                 lineHeight: 1.65,
-                marginBottom: "28px",
+                marginBottom: "24px",
               }}
             >
               {t.inquiry_desc}
@@ -106,14 +105,14 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 borderRadius: "12px",
-                padding: "20px",
-                marginBottom: "24px",
+                padding: "clamp(16px, 3vw, 20px)",
+                marginBottom: "20px",
               }}
             >
               <div
                 style={{
                   fontFamily: "var(--font-mono)",
-                  fontSize: "0.78rem",
+                  fontSize: "0.74rem",
                   color: "var(--text-dim)",
                   marginBottom: "6px",
                 }}
@@ -124,24 +123,25 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                 href="mailto:mymuse@foxmail.com?subject=MadeAgent项目咨询与定制合作"
                 style={{
                   fontFamily: "var(--font-serif)",
-                  fontSize: "1.4rem",
+                  fontSize: "clamp(1.15rem, 3.8vw, 1.4rem)",
                   color: "var(--terracotta)",
                   fontWeight: 600,
                   textDecoration: "none",
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: "8px",
+                  gap: "6px",
+                  wordBreak: "break-all",
                 }}
               >
                 mymuse@foxmail.com
-                <span style={{ fontSize: "1rem" }}>↗</span>
+                <span style={{ fontSize: "0.9rem" }}>↗</span>
               </a>
             </div>
 
             <a
               href="mailto:mymuse@foxmail.com?subject=MadeAgent项目咨询"
               className="btn-craft-outline"
-              style={{ width: "100%", textAlign: "center" }}
+              style={{ width: "100%", textAlign: "center", padding: "12px" }}
             >
               {t.form_mailto}
             </a>
@@ -154,22 +154,22 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                   background: "var(--surface)",
                   border: "1px solid var(--terracotta-border)",
                   borderRadius: "14px",
-                  padding: "36px",
+                  padding: "clamp(24px, 4vw, 36px)",
                   textAlign: "center",
                 }}
               >
                 <div
                   style={{
-                    width: "48px",
-                    height: "48px",
+                    width: "44px",
+                    height: "44px",
                     borderRadius: "50%",
                     background: "var(--terracotta-light)",
                     color: "var(--terracotta)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 16px",
-                    fontSize: "1.4rem",
+                    margin: "0 auto 14px",
+                    fontSize: "1.3rem",
                     fontWeight: "bold",
                   }}
                 >
@@ -178,19 +178,19 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                 <h3
                   style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "1.4rem",
-                    marginBottom: "12px",
+                    fontSize: "1.35rem",
+                    marginBottom: "10px",
                   }}
                 >
                   {locale === "zh" ? "提交成功" : "Inquiry Received"}
                 </h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", lineHeight: 1.6 }}>
+                <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>
                   {t.form_success}
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
                   className="btn-craft-outline"
-                  style={{ marginTop: "24px" }}
+                  style={{ marginTop: "20px" }}
                 >
                   {locale === "zh" ? "再发一条需求" : "Submit Another Inquiry"}
                 </button>
@@ -202,10 +202,10 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                   background: "var(--surface)",
                   border: "1px solid var(--border)",
                   borderRadius: "14px",
-                  padding: "32px",
+                  padding: "clamp(18px, 4vw, 32px)",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "18px",
+                  gap: "16px",
                 }}
               >
                 {errorMsg && (
@@ -213,9 +213,9 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     style={{
                       background: "#fef2f2",
                       color: "#b91c1c",
-                      padding: "10px 14px",
+                      padding: "10px 12px",
                       borderRadius: "6px",
-                      fontSize: "0.85rem",
+                      fontSize: "0.82rem",
                       border: "1px solid #fecaca",
                     }}
                   >
@@ -228,9 +228,9 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     style={{
                       display: "block",
                       fontFamily: "var(--font-mono)",
-                      fontSize: "0.75rem",
+                      fontSize: "0.74rem",
                       color: "var(--text-muted)",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                     }}
                   >
                     {t.form_name} *
@@ -243,11 +243,11 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     required
                     style={{
                       width: "100%",
-                      padding: "10px 14px",
+                      padding: "10px 12px",
                       borderRadius: "6px",
                       border: "1px solid var(--border)",
                       background: "var(--bg)",
-                      fontSize: "0.9rem",
+                      fontSize: "0.88rem",
                       color: "var(--text)",
                       fontFamily: "var(--font-sans)",
                     }}
@@ -259,9 +259,9 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     style={{
                       display: "block",
                       fontFamily: "var(--font-mono)",
-                      fontSize: "0.75rem",
+                      fontSize: "0.74rem",
                       color: "var(--text-muted)",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                     }}
                   >
                     {t.form_email} *
@@ -274,11 +274,11 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     required
                     style={{
                       width: "100%",
-                      padding: "10px 14px",
+                      padding: "10px 12px",
                       borderRadius: "6px",
                       border: "1px solid var(--border)",
                       background: "var(--bg)",
-                      fontSize: "0.9rem",
+                      fontSize: "0.88rem",
                       color: "var(--text)",
                       fontFamily: "var(--font-sans)",
                     }}
@@ -290,9 +290,9 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     style={{
                       display: "block",
                       fontFamily: "var(--font-mono)",
-                      fontSize: "0.75rem",
+                      fontSize: "0.74rem",
                       color: "var(--text-muted)",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                     }}
                   >
                     {t.form_domain}
@@ -302,11 +302,11 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     onChange={(e) => setServiceType(e.target.value)}
                     style={{
                       width: "100%",
-                      padding: "10px 14px",
+                      padding: "10px 12px",
                       borderRadius: "6px",
                       border: "1px solid var(--border)",
                       background: "var(--bg)",
-                      fontSize: "0.9rem",
+                      fontSize: "0.88rem",
                       color: "var(--text)",
                       fontFamily: "var(--font-sans)",
                     }}
@@ -324,9 +324,9 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     style={{
                       display: "block",
                       fontFamily: "var(--font-mono)",
-                      fontSize: "0.75rem",
+                      fontSize: "0.74rem",
                       color: "var(--text-muted)",
-                      marginBottom: "6px",
+                      marginBottom: "4px",
                     }}
                   >
                     {t.form_msg} *
@@ -339,11 +339,11 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                     required
                     style={{
                       width: "100%",
-                      padding: "10px 14px",
+                      padding: "10px 12px",
                       borderRadius: "6px",
                       border: "1px solid var(--border)",
                       background: "var(--bg)",
-                      fontSize: "0.9rem",
+                      fontSize: "0.88rem",
                       color: "var(--text)",
                       fontFamily: "var(--font-sans)",
                     }}
@@ -357,8 +357,8 @@ export const InquiryForm: React.FC<InquiryFormProps> = ({ locale }) => {
                   style={{
                     width: "100%",
                     padding: "12px",
-                    fontSize: "0.95rem",
-                    marginTop: "8px",
+                    fontSize: "0.92rem",
+                    marginTop: "4px",
                   }}
                 >
                   {status === "loading" ? t.form_submitting : t.form_submit}

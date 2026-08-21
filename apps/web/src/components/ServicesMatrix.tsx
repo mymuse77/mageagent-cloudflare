@@ -9,13 +9,13 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
   const t = translations[locale];
 
   return (
-    <section id="services" style={{ padding: "72px 0 60px" }}>
+    <section id="services" style={{ padding: "clamp(48px, 8vw, 72px) 0 clamp(36px, 6vw, 60px)" }}>
       <div className="container">
-        <div style={{ marginBottom: "36px" }}>
+        <div style={{ marginBottom: "32px" }}>
           <span
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: "0.78rem",
+              fontSize: "0.76rem",
               color: "var(--terracotta)",
               textTransform: "uppercase",
               letterSpacing: "0.08em",
@@ -26,7 +26,7 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
           <h2
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "clamp(2rem, 3.6vw, 2.6rem)",
+              fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
               fontWeight: 500,
               marginTop: "6px",
               color: "var(--text)",
@@ -37,7 +37,7 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
           <p
             style={{
               color: "var(--text-muted)",
-              fontSize: "0.98rem",
+              fontSize: "clamp(0.9rem, 2.2vw, 0.98rem)",
               marginTop: "6px",
             }}
           >
@@ -48,9 +48,9 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-            gap: "24px",
-            marginBottom: "32px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
+            gap: "20px",
+            marginBottom: "24px",
           }}
         >
           {t.services.map((srv, idx) => (
@@ -60,22 +60,12 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 borderRadius: "14px",
-                padding: "32px",
+                padding: "clamp(20px, 4vw, 32px)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
                 boxShadow: "0 2px 12px rgba(0, 0, 0, 0.02)",
                 transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "var(--terracotta)";
-                e.currentTarget.style.transform = "translateY(-3px)";
-                e.currentTarget.style.boxShadow = "0 12px 28px rgba(196, 77, 45, 0.08)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--border)";
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 2px 12px rgba(0, 0, 0, 0.02)";
               }}
             >
               <div>
@@ -84,13 +74,13 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    marginBottom: "16px",
+                    marginBottom: "14px",
                   }}
                 >
                   <span
                     style={{
                       fontFamily: "var(--font-serif)",
-                      fontSize: "1.8rem",
+                      fontSize: "1.6rem",
                       fontWeight: 600,
                       color: "var(--border-dark)",
                       opacity: 0.25,
@@ -98,7 +88,7 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                   >
                     0{idx + 1}
                   </span>
-                  <span className="craft-badge" style={{ fontSize: "0.7rem", padding: "2px 8px" }}>
+                  <span className="craft-badge" style={{ fontSize: "0.68rem", padding: "2px 8px" }}>
                     CORE VERTICAL
                   </span>
                 </div>
@@ -106,9 +96,9 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                 <h3
                   style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "1.35rem",
+                    fontSize: "clamp(1.2rem, 3vw, 1.35rem)",
                     fontWeight: 600,
-                    marginBottom: "6px",
+                    marginBottom: "4px",
                     color: "var(--text)",
                     lineHeight: 1.3,
                   }}
@@ -117,10 +107,10 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                 </h3>
                 <div
                   style={{
-                    fontSize: "0.82rem",
+                    fontSize: "0.8rem",
                     color: "var(--terracotta)",
                     fontFamily: "var(--font-mono)",
-                    marginBottom: "14px",
+                    marginBottom: "12px",
                   }}
                 >
                   {srv.subtitle}
@@ -129,9 +119,9 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                 <p
                   style={{
                     color: "var(--text-muted)",
-                    fontSize: "0.92rem",
+                    fontSize: "0.9rem",
                     lineHeight: 1.6,
-                    marginBottom: "20px",
+                    marginBottom: "18px",
                   }}
                 >
                   {srv.desc}
@@ -142,7 +132,7 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                     display: "flex",
                     flexWrap: "wrap",
                     gap: "6px",
-                    marginBottom: "24px",
+                    marginBottom: "20px",
                   }}
                 >
                   {srv.tags.map((tag) => (
@@ -156,10 +146,10 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
               <div
                 style={{
                   borderTop: "1px dashed var(--border)",
-                  paddingTop: "16px",
+                  paddingTop: "14px",
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "10px",
+                  gap: "8px",
                 }}
               >
                 {srv.metrics.map((m, mIdx) => (
@@ -167,18 +157,22 @@ export const ServicesMatrix: React.FC<ServicesMatrixProps> = ({ locale }) => {
                     <span
                       style={{
                         fontFamily: "var(--font-mono)",
-                        fontSize: "0.92rem",
+                        fontSize: "clamp(0.8rem, 2.2vw, 0.92rem)",
                         fontWeight: 700,
                         color: "var(--text)",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {m.val}
                     </span>
                     <span
                       style={{
-                        fontSize: "0.72rem",
+                        fontSize: "0.7rem",
                         color: "var(--text-dim)",
                         marginTop: "2px",
+                        lineHeight: 1.2,
                       }}
                     >
                       {m.label}
