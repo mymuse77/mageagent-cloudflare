@@ -1,0 +1,48 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "serve": "vite preview",
+    "start": "vite",
+    "check-types": "vite build && tsc --noEmit",
+    "dev:bare": "vite dev",
+    "deploy": "pnpm build && wrangler deploy"
+  },
+  "dependencies": {
+    "@madeagent/ui": "workspace:*",
+    "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/react-router": "^1.170.18",
+    "lucide-react": "catalog:",
+    "next-themes": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "sonner": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@madeagent/env": "workspace:*",
+    "@madeagent/api": "workspace:*",
+    "@orpc/tanstack-query": "^1.14.12",
+    "@orpc/client": "catalog:",
+    "@orpc/server": "catalog:",
+    "@tanstack/react-query": "^5.101.4",
+    "better-auth": "catalog:",
+    "@tanstack/react-form": "^1.33.2"
+  },
+  "devDependencies": {
+    "@tanstack/react-router-devtools": "^1.167.0",
+    "@tanstack/router-plugin": "^1.168.23",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "^6.0.4",
+    "postcss": "^8.5.24",
+    "tailwindcss": "catalog:",
+    "vite": "^8.1.5",
+    "typescript": "catalog:",
+    "@madeagent/config": "workspace:*",
+    "@tanstack/react-query-devtools": "^5.101.4"
+  }
+}

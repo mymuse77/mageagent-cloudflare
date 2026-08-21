@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "madeagent-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "routes": [
+    {
+      "pattern": "api.madeagent.cc",
+      "custom_domain": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "madeagent-db",
+      "database_id": "0c0ac6d6-4eab-4e2b-899d-f6b38239ae8d"
+    }
+  ],
+  "vars": {
+    "CORS_ORIGIN": "https://madeagent.cc,http://localhost:5173"
+  }
+}

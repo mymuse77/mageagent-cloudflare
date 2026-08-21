@@ -1,0 +1,24 @@
+{
+  "name": "@madeagent/auth",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "typescript": "catalog:",
+    "@madeagent/config": "workspace:*"
+  },
+  "dependencies": {
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@madeagent/env": "workspace:*",
+    "@madeagent/db": "workspace:*",
+    "better-auth": "catalog:"
+  }
+}

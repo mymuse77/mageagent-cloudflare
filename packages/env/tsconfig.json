@@ -1,0 +1,3 @@
+{
+  "extends": "@madeagent/config/tsconfig.base.json",
+}

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MadeAgent Studio | 方向一：赛博终端与暗色 Bento 网格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080a;
+      --card-bg: rgba(18, 21, 28, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(94, 106, 210, 0.5);
+      --text: #f0f2f5;
+      --text-muted: #8b949e;
+      --accent: #5e6ad2;
+      --accent-cyan: #38bdf8;
+      --accent-green: #34d399;
+      --glow: rgba(94, 106, 210, 0.15);
+      --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(94, 106, 210, 0.25), transparent 70%),
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.06), transparent 30%);
+      background-attachment: fixed;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header & Nav */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(7, 8, 10, 0.75);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em;
+      color: #fff; text-decoration: none;
+    }
+    .logo-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 6px;
+      background: linear-gradient(135deg, var(--accent), #2563eb);
+      color: #fff; font-family: var(--font-mono); font-size: 0.85rem;
+    }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-link {
+      color: var(--text-muted); text-decoration: none; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #fff; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: 8px; font-size: 0.88rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: #fff; color: #000;
+    }
+    .btn-primary:hover {
+      background: #e2e8f0; transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05); color: #fff;
+      border-color: var(--card-border);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 999px;
+      background: rgba(94, 106, 210, 0.12); border: 1px solid rgba(94, 106, 210, 0.3);
+      font-family: var(--font-mono); font-size: 0.8rem; color: #a5b4fc;
+      margin-bottom: 24px;
+    }
+    .status-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+    }
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 1.15rem; color: var(--text-muted); max-width: 680px;
+      margin: 0 auto 36px; text-wrap: pretty;
+    }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; }
+
+    /* Bento Grid */
+    .section-title {
+      font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px;
+    }
+    .bento-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px;
+      margin-bottom: 80px;
+    }
+    .bento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 28px;
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .bento-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px -10px var(--glow);
+    }
+    .col-8 { grid-column: span 8; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .col-8, .col-4, .col-6 { grid-column: span 12; }
+    }
+
+    .card-badge {
+      display: inline-block; font-family: var(--font-mono); font-size: 0.72rem;
+      padding: 3px 8px; border-radius: 4px; background: rgba(255,255,255,0.06);
+      color: #a1a1aa; margin-bottom: 12px; width: fit-content;
+    }
+    .card-title {
+      font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; color: #fff;
+    }
+    .card-desc {
+      color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 20px;
+    }
+
+    /* Terminal visual in card */
+    .terminal-box {
+      background: #020408; border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; padding: 14px; font-family: var(--font-mono);
+      font-size: 0.8rem; color: #38bdf8; overflow-x: auto;
+    }
+    .terminal-header { display: flex; gap: 6px; margin-bottom: 10px; }
+    .terminal-dot { width: 9px; height: 9px; border-radius: 50%; background: #334155; }
+    .terminal-dot:nth-child(1) { background: #ef4444; }
+    .terminal-dot:nth-child(2) { background: #f59e0b; }
+    .terminal-dot:nth-child(3) { background: #10b981; }
+
+    /* Showcase metrics */
+    .metrics-row {
+      display: flex; gap: 24px; padding-top: 14px; border-top: 1px solid var(--card-border);
+    }
+    .metric-item { display: flex; flex-direction: column; }
+    .metric-val { font-size: 1.3rem; font-weight: 700; color: #fff; font-family: var(--font-mono); }
+    .metric-label { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Tech Stack Tags */
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag {
+      font-size: 0.75rem; font-family: var(--font-mono);
+      padding: 4px 10px; border-radius: 6px; background: rgba(94, 106, 210, 0.1);
+      color: #c7d2fe; border: 1px solid rgba(94, 106, 210, 0.2);
+    }
+
+    /* Contact Section */
+    .contact-card {
+      background: linear-gradient(180deg, rgba(24, 28, 38, 0.8) 0%, rgba(12, 14, 20, 0.95) 100%);
+      border: 1px solid rgba(94, 106, 210, 0.3); border-radius: 20px;
+      padding: 48px; text-align: center; margin-bottom: 80px;
+    }
+    .contact-title { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+    .contact-email-box {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #090b10; padding: 12px 24px; border-radius: 12px;
+      border: 1px solid var(--card-border); margin: 24px 0;
+      font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-cyan);
+    }
+    footer {
+      border-top: 1px solid var(--card-border); padding: 36px 0;
+      color: var(--text-muted); font-size: 0.85rem; text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">
+        <span class="logo-badge">M</span>
+        <span>MadeAgent Studio</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services" class="nav-link" data-i18n="nav_services">核心业务</a>
+        <a href="#showcase" class="nav-link" data-i18n="nav_cases">技术案例</a>
+        <a href="#about" class="nav-link" data-i18n="nav_about">关于团队</a>
+        <button id="lang-toggle" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.75rem;">EN / 中文</button>
+        <a href="#contact" class="btn btn-primary" data-i18n="nav_contact">业务接单咨询</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container hero">
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span data-i18n="status_accepting">接受定制开发需求 · 专注边缘与离线关键技术</span>
+    </div>
+    <h1 class="hero-title" data-i18n="hero_title">
+      深度工程落地 · 定制系统开发<br/>从音视频流媒体到离线私有化
+    </h1>
+    <p class="hero-subtitle" data-i18n="hero_sub">
+      MadeAgent 工作室专注于高壁垒关键技术攻坚：视频监控平台、OCR与智能文档识别、音视频实时处理、离线地图与纯离线网络闭环系统交付。
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary" data-i18n="btn_start">立即提交需求清单</a>
+      <a href="#services" class="btn btn-outline" data-i18n="btn_explore">查看技术方案</a>
+    </div>
+  </section>
+
+  <!-- Bento Grid Capabilities -->
+  <section id="services" class="container" style="padding-top: 40px;">
+    <h2 class="section-title" data-i18n="bento_heading">专精领域 · 核心研发矩阵</h2>
+    <p class="section-desc" data-i18n="bento_sub">具备从底层 C/C++/WebAssembly 到现代边缘全栈云原生端到端研发能力</p>
+
+    <div class="bento-grid">
+      <!-- 1. 视频监控与音视频流媒体 (Col 8) -->
+      <div class="bento-card col-8">
+        <div>
+          <span class="card-badge">STREAMING & SURVEILLANCE</span>
+          <h3 class="card-title" data-i18n="card1_title">视频监控平台与音视频流媒体处理</h3>
+          <p class="card-desc" data-i18n="card1_desc">
+            支持 RTSP/RTMP/GB28181/WebRTC 多协议接入，低延迟转码推流、分布式录像存储、Web 端千万级视频回放与 AI 智能行为分析联动。
+          </p>
+          <div class="terminal-box">
+            <div class="terminal-header">
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+              <span class="terminal-dot"></span>
+            </div>
+            <code>
+              $ madeagent-stream-engine --protocol=gb28181,webrtc --codec=h265,av1<br/>
+              [✓] 1000+ IP Camera streams synchronized (latency &lt; 280ms)<br/>
+              [✓] Hardware acceleration: CUDA / Intel QSV enabled
+            </code>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <span class="metric-val">&lt; 300ms</span>
+            <span class="metric-label" data-i18n="m_latency">端到端超低延迟</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">GB28181</span>
+            <span class="metric-label" data-i18n="m_standard">国标完整兼容</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">4K 60FPS</span>
+            <span class="metric-label" data-i18n="m_quality">实时转码转封装</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. OCR 与智能文档识别 (Col 4) -->
+      <div class="bento-card col-4">
+        <div>
+          <span class="card-badge">COMPUTER VISION</span>
+          <h3 class="card-title" data-i18n="card2_title">OCR 智能文档识别与提取</h3>
+          <p class="card-desc" data-i18n="card2_desc">
+            复杂表格结构化还原、多语言票据智能清洗、离线本地轻量化模型推理，高准确率隐私数据脱敏。
+          </p>
+        </div>
+        <div class="tags-wrap">
+          <span class="tag">LayoutLM</span>
+          <span class="tag">PaddleOCR</span>
+          <span class="tag">ONNX Runtime</span>
+          <span class="tag">Table Parsing</span>
+        </div>
+      </div>
+
+      <!-- 3. 离线地图与空间地理系统 (Col 4) -->
+      <div class="bento-card col-4">
+        <div>
+          <span class="card-badge">GIS & MAP ENGINE</span>
+          <h3 class="card-title" data-i18n="card3_title">离线地图与私有化 GIS 瓦片</h3>
+          <p class="card-desc" data-i18n="card3_desc">
+            无外网依赖的高性能离线矢量/栅格地图瓦片服务，三维地理坐标测绘、离线轨迹追踪与热力图分析。
+          </p>
+        </div>
+        <div class="tags-wrap">
+          <span class="tag">MapLibre GL</span>
+          <span class="tag">Vector Tiles</span>
+          <span class="tag">GeoJSON</span>
+          <span class="tag">PostGIS</span>
+        </div>
+      </div>
+
+      <!-- 4. 离线环境与信创关键技术落地 (Col 8) -->
+      <div class="bento-card col-8">
+        <div>
+          <span class="card-badge">AIR-GAPPED & DEPLOYMENT</span>
+          <h3 class="card-title" data-i18n="card4_title">纯离线网络与关键技术私有化落地</h3>
+          <p class="card-desc" data-i18n="card4_desc">
+            面向保密单位、封闭厂区、本地局域网环境提供全套“零外网依赖”的软件包打包、自动化离线部署、本地 SQLite/D1 离线同步与故障自愈体系。
+          </p>
+          <div class="tags-wrap">
+            <span class="tag">Air-Gapped Container</span>
+            <span class="tag">Embedded SQLite</span>
+            <span class="tag">Local LLM / Vision</span>
+            <span class="tag">Cloudflare Edge Hybrid</span>
+          </div>
+        </div>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <span class="metric-val">100%</span>
+            <span class="metric-label" data-i18n="m_offline">脱网独立运行</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">1-Click</span>
+            <span class="metric-label" data-i18n="m_deploy">绿色免装一键拉起</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="contact" class="container">
+    <div class="contact-card">
+      <span class="card-badge">GET IN TOUCH</span>
+      <h2 class="contact-title" data-i18n="contact_heading">携手打造高质量定制软件</h2>
+      <p style="color: var(--text-muted); max-width: 540px; margin: 0 auto;" data-i18n="contact_desc">
+        无论您需要音视频监控系统攻坚、离线 GIS 平台部署、还是端到端全栈系统定制，我们均可在 24 小时内响应评估方案。
+      </p>
+      <div>
+        <div class="contact-email-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:mymuse@foxmail.com" style="color: inherit; text-decoration: none;">mymuse@foxmail.com</a>
+        </div>
+      </div>
+      <a href="mailto:mymuse@foxmail.com?subject=MadeAgent业务咨询" class="btn btn-primary" data-i18n="btn_send_email">发送项目需求邮件</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 MadeAgent Studio (madeagent.cc). All rights reserved. Powered by Cloudflare Workers & TanStack Router.</p>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      zh: {
+        nav_services: "核心业务",
+        nav_cases: "技术案例",
+        nav_about: "关于团队",
+        nav_contact: "业务接单咨询",
+        status_accepting: "接受定制开发需求 · 专注边缘与离线关键技术",
+        hero_title: "深度工程落地 · 定制系统开发<br/>从音视频流媒体到离线私有化",
+        hero_sub: "MadeAgent 工作室专注于高壁垒关键技术攻坚：视频监控平台、OCR与智能文档识别、音视频实时处理、离线地图与纯离线网络闭环系统交付。",
+        btn_start: "立即提交需求清单",
+        btn_explore: "查看技术方案",
+        bento_heading: "专精领域 · 核心研发矩阵",
+        bento_sub: "具备从底层 C/C++/WebAssembly 到现代边缘全栈云原生端到端研发能力",
+        card1_title: "视频监控平台与音视频流媒体处理",
+        card1_desc: "支持 RTSP/RTMP/GB28181/WebRTC 多协议接入，低延迟转码推流、分布式录像存储、Web 端千万级视频回放与 AI 智能行为分析联动。",
+        card2_title: "OCR 智能文档识别与提取",
+        card2_desc: "复杂表格结构化还原、多语言票据智能清洗、离线本地轻量化模型推理，高准确率隐私数据脱敏。",
+        card3_title: "离线地图与私有化 GIS 瓦片",
+        card3_desc: "无外网依赖的高性能离线矢量/栅格地图瓦片服务，三维地理坐标测绘、离线轨迹追踪与热力图分析。",
+        card4_title: "纯离线网络与关键技术私有化落地",
+        card4_desc: "面向保密单位、封闭厂区、本地局域网环境提供全套“零外网依赖”的软件包打包、自动化离线部署、本地 SQLite/D1 离线同步与故障自愈体系。",
+        m_latency: "端到端超低延迟",
+        m_standard: "国标完整兼容",
+        m_quality: "实时转码转封装",
+        m_offline: "脱网独立运行",
+        m_deploy: "绿色免装一键拉起",
+        contact_heading: "携手打造高质量定制软件",
+        contact_desc: "无论您需要音视频监控系统攻坚、离线 GIS 平台部署、还是端到端全栈系统定制，我们均可在 24 小时内响应评估方案。",
+        btn_send_email: "发送项目需求邮件"
+      },
+      en: {
+        nav_services: "Capabilities",
+        nav_cases: "Case Studies",
+        nav_about: "About Us",
+        nav_contact: "Hire Studio",
+        status_accepting: "Accepting Projects · Specializing in Edge & Air-Gapped Systems",
+        hero_title: "Deep Engineering · Custom Solutions<br/>From Video Streaming to Air-Gapped Deployment",
+        hero_sub: "MadeAgent Studio tackles mission-critical engineering: Video surveillance platforms, OCR & document parsing, audio/video pipelines, offline GIS maps, and isolated air-gapped tech deployment.",
+        btn_start: "Get in Touch",
+        btn_explore: "Explore Solutions",
+        bento_heading: "Core Engineering Matrix",
+        bento_sub: "End-to-end expertise spanning C/C++/WASM, Edge computing, and modern fullstack architectures.",
+        card1_title: "Video Surveillance & Media Streaming",
+        card1_desc: "Comprehensive RTSP/RTMP/GB28181/WebRTC protocol integration, ultra-low latency transcoding, distributed storage, and real-time AI computer vision pipelines.",
+        card2_title: "Intelligent OCR & Document Parsing",
+        card2_desc: "Complex table reconstruction, multi-language receipt processing, on-device lightweight inference, and air-gapped data sanitization.",
+        card3_title: "Offline GIS & Vector Map Engine",
+        card3_desc: "Zero-dependency offline vector/raster map tile engine, 3D geographic coordinate tracking, and offline spatial analytics.",
+        card4_title: "Air-Gapped & Offline Enterprise Delivery",
+        card4_desc: "Turnkey delivery for secure air-gapped environments, 100% offline self-contained packages, embedded SQLite/D1 data synchronization, and automated zero-downtime operations.",
+        m_latency: "Ultra-low Latency",
+        m_standard: "Standard Protocols",
+        m_quality: "Realtime Transcoding",
+        m_offline: "Zero Internet Needed",
+        m_deploy: "One-Click Bootstrapping",
+        contact_heading: "Let's Build Robust Software Together",
+        contact_desc: "Whether you need complex video streaming pipelines, air-gapped GIS platforms, or custom fullstack web systems, we reply within 24h.",
+        btn_send_email: "Send Project Inquiry"
+      }
+    };
+
+    let curLang = 'zh';
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      curLang = curLang === 'zh' ? 'en' : 'zh';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[curLang][key]) {
+          el.innerHTML = i18n[curLang][key];
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MadeAgent Studio | 方向三：工匠温度与出版级质感 Warm Craftsman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f6f0;
+      --surface: #ffffff;
+      --card-bg: #f3efe6;
+      --border: #e6e0d4;
+      --border-dark: #2c2824;
+      --text: #1f1d1a;
+      --text-muted: #6b665f;
+      --terracotta: #c44d2d;
+      --terracotta-dark: #9c3b20;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(248, 246, 240, 0.88); backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 50;
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600;
+      color: var(--text); text-decoration: none;
+    }
+    .brand-accent { color: var(--terracotta); font-style: italic; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-link {
+      font-size: 0.9rem; font-weight: 500; color: var(--text-muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .btn-craft {
+      background: var(--text); color: #fff; padding: 9px 20px;
+      border-radius: 999px; font-size: 0.88rem; font-weight: 500;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-craft:hover { background: var(--terracotta); }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0 70px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-meta {
+      font-family: var(--font-mono); font-size: 0.8rem; color: var(--terracotta);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px;
+    }
+    .hero-h1 {
+      font-family: var(--font-serif); font-size: clamp(2.6rem, 5.2vw, 4.2rem);
+      font-weight: 500; line-height: 1.18; letter-spacing: -0.02em;
+      margin-bottom: 24px; max-width: 900px;
+    }
+    .hero-h1 em { font-style: italic; color: var(--terracotta); }
+    .hero-lead {
+      font-size: 1.2rem; color: var(--text-muted); max-width: 680px;
+      line-height: 1.65; margin-bottom: 36px;
+    }
+
+    /* Pillars */
+    .section-head {
+      padding: 60px 0 30px; display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .section-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--terracotta); }
+    .section-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 500; margin-top: 4px; }
+
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-bottom: 80px;
+    }
+    @media (max-width: 860px) { .pillars-grid { grid-template-columns: 1fr; } }
+    .pillar-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card-num {
+      font-family: var(--font-serif); font-size: 1.8rem; color: var(--border-dark);
+      opacity: 0.3; margin-bottom: 20px;
+    }
+    .card-h3 {
+      font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600;
+      margin-bottom: 12px; color: var(--text);
+    }
+    .card-p {
+      color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;
+    }
+    .card-footer {
+      margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--border);
+      font-family: var(--font-mono); font-size: 0.75rem; color: var(--terracotta);
+    }
+
+    /* Trust & Airgap Banner */
+    .airgap-banner {
+      background: #1f1d1a; color: #f8f6f0; border-radius: 16px;
+      padding: 48px; margin-bottom: 80px;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center;
+    }
+    @media (max-width: 860px) { .airgap-banner { grid-template-columns: 1fr; } }
+    .airgap-title {
+      font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin-bottom: 16px;
+    }
+    .airgap-desc { color: #a8a29e; font-size: 0.95rem; line-height: 1.6; }
+    .features-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .features-list li {
+      display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #e7e5e4;
+    }
+    .check-icon { color: var(--terracotta); font-weight: bold; }
+
+    /* Contact CTA */
+    .cta-wrap {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 60px 40px; text-align: center;
+      margin-bottom: 80px;
+    }
+    .cta-h2 {
+      font-family: var(--font-serif); font-size: 2.2rem; font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .cta-mail {
+      display: inline-block; font-family: var(--font-serif); font-size: 1.6rem;
+      color: var(--terracotta); text-decoration: underline; margin: 20px 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 40px 0;
+      display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        MadeAgent <span class="brand-accent">Studio</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services" class="nav-link">专精方向</a>
+        <a href="#airgap" class="nav-link">离线私有化</a>
+        <a href="#contact" class="nav-link">联系接单</a>
+        <button id="lang-btn" style="background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:5px 12px; font-size:0.78rem; font-weight:600; cursor:pointer;">EN / 中文</button>
+        <a href="mailto:mymuse@foxmail.com" class="btn-craft">开启合作</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container hero">
+    <div class="hero-meta">Craftsmanship in Deep Engineering · 深度工程工匠</div>
+    <h1 class="hero-h1">
+      做有温度的技术工匠，<br/>攻坚<em>视频流媒体、OCR与纯离线网络</em>核心闭环。
+    </h1>
+    <p class="hero-lead">
+      MadeAgent 工作室（madeagent.cc）深耕高难度定制软件研发。我们不仅提供端到端应用开发，更专注于在极端封闭离线环境、复杂工业视频流与智能文档处理场景中实现 100% 可靠落地。
+    </p>
+    <div style="display:flex; gap:16px; align-items:center;">
+      <a href="mailto:mymuse@foxmail.com" class="btn-craft" style="padding:12px 28px; font-size:1rem;">发送项目合作需求</a>
+      <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">商务邮箱: mymuse@foxmail.com</span>
+    </div>
+  </section>
+
+  <!-- Six Capabilities in 3-Columns -->
+  <section id="services" class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag">// SIX CORE CAPABILITIES</span>
+        <h2 class="section-title">六大核心攻坚与交付领域</h2>
+      </div>
+    </div>
+
+    <div class="pillars-grid">
+      <!-- 1 -->
+      <div class="pillar-card">
+        <div>
+          <div class="card-num">01</div>
+          <h3 class="card-h3">视频监控平台架构</h3>
+          <p class="card-p">
+            GB28181、RTSP、RTMP与WebRTC全协议兼容。海量视频流毫秒级并发分发、录像回放与AI智能视频结构化分析。
+          </p>
+        </div>
+        <div class="card-footer">LOW LATENCY / GB28181 / H.265</div>
+      </div>
+
+      <!-- 2 -->
+      <div class="pillar-card">
+        <div>
+          <div class="card-num">02</div>
+          <h3 class="card-h3">OCR 智能文档解析</h3>
+          <p class="card-p">
+            复杂票据、表格和混排文档的高精度版面分析与要素抽取，支持端侧轻量化模型推理，数据不出内网。
+          </p>
+        </div>
+        <div class="card-footer">ONNX / PRIVACY / TABLE-RECOVERY</div>
+      </div>
+
+      <!-- 3 -->
+      <div class="pillar-card">
+        <div>
+          <div class="card-num">03</div>
+          <h3 class="card-h3">音视频实时处理流水线</h3>
+          <p class="card-p">
+            基于底层硬解的高性能视频转码、混音混流、音画同步与WebAssembly前端渲染，满足工业与会议级严苛要求。
+          </p>
+        </div>
+        <div class="card-footer">FFMPEG / WASM / REALTIME</div>
+      </div>
+
+      <!-- 4 -->
+      <div class="pillar-card">
+        <div>
+          <div class="card-num">04</div>
+          <h3 class="card-h3">私有化离线 GIS 与地图</h3>
+          <p class="card-p">
+            离线矢量切片与栅格瓦片服务，精准经纬度测绘、轨迹回放与三维空间数据可视化，零外网联网需求。
+          </p>
+        </div>
+        <div class="card-footer">VECTOR TILES / GIS / MAPLIBRE</div>
+      </div>
+
+      <!-- 5 -->
+      <div class="pillar-card">
+        <div>
+          <div class="card-num">05</div>
+          <h3 class="card-h3">纯离线网络闭环系统</h3>
+          <p class="card-p">
+            专为保密与专网环境量身打造，单文件自包含绿色部署，离线 D1/SQLite 数据同步与故障自动化恢复。
+          </p>
+        </div>
+        <div class="card-footer">AIR-GAPPED / SQLITE / SELF-CONTAINED</div>
+      </div>
+
+      <!-- 6 -->
+      <div class="pillar-card">
+        <div>
+          <div class="card-num">06</div>
+          <h3 class="card-h3">全栈定制系统开发</h3>
+          <p class="card-p">
+            采用前沿 TanStack + Hono + Cloudflare Workers 架构，交付极致响应速度、全类型安全的业务系统。
+          </p>
+        </div>
+        <div class="card-footer">TANSTACK / HONO / CLOUDFLARE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Airgap Highlight Banner -->
+  <section id="airgap" class="container">
+    <div class="airgap-banner">
+      <div>
+        <h2 class="airgap-title">专为严苛私有化与离线环境设计</h2>
+        <p class="airgap-desc">
+          我们深知在金融、军工、能源和特殊专网场景下，无外网连接对系统稳定性的考验。MadeAgent 积累了深厚的纯离线闭环打包、依赖固化与自愈监控经验。
+        </p>
+      </div>
+      <ul class="features-list">
+        <li><span class="check-icon">✓</span> 100% 脱离公网环境，零外部 CDN / API 依赖</li>
+        <li><span class="check-icon">✓</span> 自包含轻量数据库与离线模型推理包</li>
+        <li><span class="check-icon">✓</span> 极简部署：单脚本初始化，免繁琐运维</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section id="contact" class="container">
+    <div class="cta-wrap">
+      <h2 class="cta-h2">与我们聊聊您的项目愿景</h2>
+      <p style="color: var(--text-muted); max-width: 520px; margin: 0 auto;">
+        无论是复杂系统定制，还是关键技术攻坚，我们都期待与您深度合作。
+      </p>
+      <div>
+        <a href="mailto:mymuse@foxmail.com" class="cta-mail">mymuse@foxmail.com</a>
+      </div>
+      <a href="mailto:mymuse@foxmail.com?subject=MadeAgent业务咨询" class="btn-craft" style="padding: 12px 32px; font-size: 1rem;">立即发信联系</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; width:100%;">
+      <span>MADEAGENT STUDIO · MADEAGENT.CC</span>
+      <span>CONTACT: MYMUSE@FOXMAIL.COM</span>
+      <span>POWERED BY CLOUDFLARE EDGE & TANSTACK</span>
+    </div>
+  </footer>
+
+</body>
+</html>

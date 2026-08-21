@@ -1,0 +1,35 @@
+{
+  "name": "madeagent",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "dev:web": "turbo run dev -F web --",
+    "dev:server": "turbo run dev -F server --",
+    "deploy": "turbo run deploy",
+    "deploy:server": "pnpm -F server deploy",
+    "deploy:web": "pnpm -F web deploy",
+    "check": "oxlint && oxfmt --write"
+  },
+  "packageManager": "pnpm@11.22.0",
+  "dependencies": {
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@madeagent/env": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "@madeagent/config": "workspace:*",
+    "@cloudflare/workers-types": "catalog:",
+    "turbo": "^2.10.7",
+    "oxlint": "^1.78.0",
+    "oxfmt": "^0.63.0"
+  }
+}

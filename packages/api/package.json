@@ -1,0 +1,29 @@
+{
+  "name": "@madeagent/api",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "type": "module",
+  "scripts": {},
+  "devDependencies": {
+    "typescript": "catalog:",
+    "@madeagent/config": "workspace:*",
+    "hono": "catalog:"
+  },
+  "dependencies": {
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@madeagent/env": "workspace:*",
+    "@madeagent/auth": "workspace:*",
+    "@madeagent/db": "workspace:*",
+    "@orpc/server": "catalog:",
+    "@orpc/client": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/zod": "catalog:"
+  }
+}
