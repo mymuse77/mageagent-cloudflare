@@ -1,128 +1,135 @@
-# madeagent
+# MadeAgent Studio | Custom Engineering Lab
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Router, Hono, ORPC, and more.
+<p align="center">
+  <a href="./README.zh-CN.md"><b>🇨🇳 简体中文</b></a> | <a href="./README.md"><b>🇬🇧 English</b></a>
+</p>
 
-## Features
+<p align="center">
+  <b>Deep Engineering · Mission-Critical Custom Software Lab</b><br/>
+  From Video Streaming to Air-Gapped Closed-Loop System Delivery
+</p>
 
-- **TypeScript** - For type safety and improved developer experience
-- **TanStack Router** - File-based routing with full type safety
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
-- **Hono** - Lightweight, performant server framework
-- **oRPC** - End-to-end type-safe APIs with OpenAPI integration
-- **workers** - Runtime environment
-- **Drizzle** - TypeScript-first ORM
-- **Cloudflare D1** - Database engine
-- **Authentication** - Better-Auth
-- **Oxlint** - Oxlint + Oxfmt (linting & formatting)
-- **Turborepo** - Optimized monorepo build system
+<p align="center">
+  <a href="https://madeagent.cc"><img src="https://img.shields.io/badge/Website-madeagent.cc-c44d2d?style=flat-square" alt="Website"></a>
+  <a href="https://api.madeagent.cc"><img src="https://img.shields.io/badge/API-api.madeagent.cc-2563eb?style=flat-square" alt="API"></a>
+  <a href="mailto:mymuse@foxmail.com"><img src="https://img.shields.io/badge/Contact-mymuse%40foxmail.com-10b981?style=flat-square" alt="Email"></a>
+  <img src="https://img.shields.io/badge/Cloudflare-Edge%20Workers-f38020?style=flat-square" alt="Cloudflare">
+  <img src="https://img.shields.io/badge/Stack-Better--T--Stack-purple?style=flat-square" alt="Tech Stack">
+</p>
 
-## Getting Started
+---
 
-First, install the dependencies:
+## 🏛️ About MadeAgent Studio
+
+**MadeAgent Studio** ([madeagent.cc](https://madeagent.cc)) is a specialized engineering lab focused on high-barrier, low-level, and isolated closed-loop custom software development. We bridge the gap between low-level systems (C/C++/WASM) and modern Edge cloud-native architectures.
+
+### 🌟 Six Core Engineering Verticals
+
+1. **📹 Video Surveillance & AI Analytics Platform**
+   - Full compatibility with GB28181, RTSP, RTMP, and WebRTC protocols.
+   - Synchronized streaming for 1,000+ IP cameras (latency <280ms), sliced video storage, PTZ control, and perimeter AI vision alerts.
+2. **📄 Intelligent OCR & Document Parsing**
+   - Complex table reconstruction and multi-format document extraction (99.2%+ accuracy).
+   - 100% on-device lightweight ONNX inference with zero data egress, meeting defense and banking audit standards.
+3. **🎞️ Realtime Media Processing Pipeline**
+   - GPU hardware-accelerated transcoding (CUDA / Intel QSV) powered by FFmpeg/GStreamer.
+   - WebAssembly client-side zero-overhead rendering and low-jitter realtime audio mixing (<15ms).
+4. **🗺️ Air-Gapped GIS & Vector Map Engine**
+   - Zero-dependency offline vector/raster map tile engine.
+   - Sub-millisecond geographic calculation, 10M+ coordinate capacity, and 3D spatial heatmap visualization.
+5. **🛡️ Air-Gapped Closed-Loop System Delivery**
+   - Engineered for classified networks, defense facilities, and isolated factory lines.
+   - Single-file self-contained packaging, embedded SQLite/D1 synchronization, and automated watchdog self-healing.
+6. **💻 End-to-End Modern Fullstack Development**
+   - Built on the Better-T-Stack with 100% end-to-end type safety and sub-5ms edge cold starts.
+
+---
+
+## 🛠️ Tech Stack Architecture (Better-T-Stack)
+
+| Layer | Technology | Details |
+| :--- | :--- | :--- |
+| **Monorepo** | Turborepo + pnpm (v11) | Unified management of apps and packages |
+| **Frontend (Web)** | React 19 + TanStack Router + Vite | Type-safe routing system with responsive SPA |
+| **Design Language** | Warm Craftsman Design System | Takram engineering elegance & editorial typography (Newsreader + Plus Jakarta Sans) |
+| **Internationalization** | Bilingual (zh-CN / en-US) | Instant client-side language switching |
+| **Backend (Server)** | Hono + Cloudflare Workers | Lightweight edge runtime with sub-millisecond cold starts |
+| **API / RPC** | oRPC + OpenAPI | Shared end-to-end type contracts |
+| **Database** | Cloudflare D1 (SQLite) + Drizzle ORM | Global distributed edge database |
+| **Deployment** | Cloudflare Workers Custom Domains | Automated DNS & SSL certificate provisioning |
+
+---
+
+## 📁 Repository Structure
+
+```text
+.
+├── apps/
+│   ├── web/                     # Frontend Application (TanStack Router + Vite + React 19)
+│   │   ├── src/
+│   │   │   ├── components/      # Header, Hero, ServicesMatrix, AirgapHighlight, InquiryForm, Footer
+│   │   │   ├── lib/i18n.ts      # Bilingual Dictionary (zh / en)
+│   │   │   └── routes/          # Type-safe Page Routes
+│   │   └── wrangler.jsonc       # Cloudflare Workers Assets & Custom Domains (madeagent.cc)
+│   └── server/                  # Backend API (Hono + Cloudflare Workers)
+│       ├── src/index.ts         # Hono entry & oRPC handlers
+│       └── wrangler.jsonc       # api.madeagent.cc & D1 Database binding
+├── packages/
+│   ├── api/                     # oRPC procedure definitions (submitInquiry, healthCheck)
+│   ├── db/                      # Cloudflare D1 + Drizzle ORM Schema (inquiries table)
+│   ├── auth/                    # Better-Auth framework
+│   └── env/                     # Type-safe environment variable validation
+├── design-demos/                # 3 Design Prototypes (huashu-design) & Screenshots
+└── direction-approved.md        # Approved Design Gate File
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
 
 ```bash
 pnpm install
 ```
-## Database Setup
 
-This project uses Cloudflare D1 (SQLite) with Drizzle ORM.
-
-Runtime database access uses the Cloudflare `DB` binding from `packages/infra/alchemy.run.ts`. If a local `DATABASE_URL` is present, it is only for database tooling.
-
-Alchemy provisions the D1 database and applies migrations during `deploy`.
-
-1. Generate migration files:
-```bash
-pnpm run db:generate
-```
-
-
-
-Then, run the development server:
+### 2. Run Local Development Server
 
 ```bash
 pnpm run dev
 ```
 
-Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
-The API is running at [http://localhost:3000](http://localhost:3000).
+* Frontend: `http://localhost:3001`
+* Backend API: `http://localhost:3000`
 
-## UI Customization
-
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
-
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
-
-### Add more shared components
-
-Run this from the project root to add more primitives to the shared UI package:
+### 3. Build & Type Check
 
 ```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
+# Build all packages
+pnpm run build
+
+# Type check
+pnpm run check-types
 ```
 
-Import shared components like this:
+---
 
-```tsx
-import { Button } from "@madeagent/ui/components/button"
-```
+## ☁️ Cloudflare Edge Deployment
 
-### Add app-specific blocks
-
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
-
-
-## Deployment
-
-### Alchemy
-
-- Target: web on Cloudflare + server on Cloudflare
-- Configure provider login: `cd packages/infra && pnpm exec alchemy login --configure`
-- Dev: pnpm run dev
-- Deploy: pnpm run deploy
-- Destroy: pnpm run destroy
-
-`alchemy login --configure` stores the selected Cloudflare, Neon, PlanetScale, and/or Prisma provider profiles under `~/.alchemy`; no provider-specific setup command is required by this scaffold.
-
-Deploys are staged and default to a personal `dev_<username>` stage. For production, run the deploy with an explicit stage from `packages/infra`:
+The project is configured for Cloudflare Workers custom domains:
 
 ```bash
-cd packages/infra && pnpm exec alchemy deploy --stage production
+# Deploy Backend API (bound to api.madeagent.cc)
+pnpm run deploy:server
+
+# Deploy Frontend (bound to madeagent.cc / www.madeagent.cc)
+pnpm run deploy:web
 ```
 
-### Production origins
+---
 
-- Required after the first deploy: set `CORS_ORIGIN` in `apps/server/.env` to the exact deployed web origin, such as `https://app.example.com`, then deploy the server again.
+## 📬 Business Inquiry & Commissioning
 
-## Git Hooks and Formatting
-
-- Run checks: `pnpm run check`
-
-
-
-## Project Structure
-
-```
-madeagent/
-├── apps/
-│   ├── web/         # Frontend application (React + TanStack Router)
-│   └── server/      # Backend API (Hono, ORPC)
-├── packages/
-│   ├── ui/          # Shared shadcn/ui components and styles
-│   ├── api/         # API layer / business logic
-│   ├── auth/        # Authentication configuration & logic
-│   └── db/          # Database schema & queries
-```
-
-## Available Scripts
-
-- `pnpm run dev`: Start all applications in development mode
-- `pnpm run build`: Build all applications
-- `pnpm run dev:web`: Start only the web application
-- `pnpm run dev:server`: Start only the server
-- `pnpm run check-types`: Check TypeScript types across all apps
-- `pnpm run db:generate`: Generate database client/types
-- `pnpm run check`: Run Oxlint and Oxfmt
+* **Official Website**: [https://madeagent.cc](https://madeagent.cc) / [https://www.madeagent.cc](https://www.madeagent.cc)
+* **Direct Inquiry Email**: [mymuse@foxmail.com](mailto:mymuse@foxmail.com)
+* **Response SLA**: Technical spec & timeline evaluation within 24 hours (business days).
